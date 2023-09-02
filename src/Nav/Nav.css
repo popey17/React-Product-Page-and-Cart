@@ -1,0 +1,44 @@
+nav {
+  display: flex;
+  border-bottom: 2px solid #e5dada;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  z-index: 100;
+  /* margin-left: ; */
+}
+
+.logo span {
+  font-size: 20px;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+}
+
+.navlinks a {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.nav-icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 2rem;
+}
+
+.navlinks a .count {
+  background-color: aqua;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  position: absolute;
+  right: -6px;
+  top:-3px;
+}
