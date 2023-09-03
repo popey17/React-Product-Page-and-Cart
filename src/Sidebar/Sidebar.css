@@ -1,0 +1,21 @@
+.sidebar {
+  width: 15%;
+  position: fixed;
+  height: 100%;
+  border-right: 2px solid #e5e5e5;
+  z-index: 3;
+  padding-top: 2rem;
+}
+
+input {
+  padding: 12px 20px;
+  border: none;
+  margin-left: -25%;
+  background: #f7f1f1;
+  border-radius: 5px;
+}
+
+.sidebar-container {
+  width: 50%;
+  margin: auto;
+}

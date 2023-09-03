@@ -1,7 +1,10 @@
 
-function Input() {
+function Input({name,title,handleClick}) {
   return (
-    <div>Input</div>
+    <label  className="sidebar-label-container">
+          <input type="radio" name={name} value={title} onChange={handleClick}/>
+          <span className='check'></span>{title}
+        </label>
   )
 }
 

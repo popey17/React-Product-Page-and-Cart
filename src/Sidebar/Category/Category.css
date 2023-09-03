@@ -1,0 +1,60 @@
+.sidebar-title {
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 20px;
+  margin-top: 2rem;
+}
+
+.sidebar-label-container {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select:none;
+  user-select:none;
+}
+
+.sidebar-label-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 50% ;
+  margin-right: 10px;
+  position: relative;
+}
+
+.sidebar-label-container:hover  input ~ .check {
+  background: #8e8787;
+}
+
+.sidebar-label-container input:checked ~ .check  {
+  background: #ded7d7;
+}
+
+.check::after {
+  display: none;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #8c5b5b;
+}
+
+.sidebar-label-container input:checked ~ .check::after {
+  display: block;
+}
+
