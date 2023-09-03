@@ -1,14 +1,14 @@
 import './Sidebar.css';
 import Category from './Category/Category';
 
-function Sidebar({handleClick}) {
+function Sidebar({handleQuery}) {
 
   return (
       <>
         <section className="sidebar">
           <div className='sidebar-container'>
-            <input type="text" placeholder='find item' />
-            <Category  handleClick={handleClick}/>
+            <input type="text" placeholder='Search your item here' onChange={handleQuery} />
+            <Category  handleQuery={handleQuery}/>
           </div>
         </section>
       </>

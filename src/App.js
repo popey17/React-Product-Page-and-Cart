@@ -1,7 +1,8 @@
 import Nav from "./Nav/Nav";
-import Products from "./Products/Products";
-import Sidebar from "./Sidebar/Sidebar";
+import { BrowserRouter , Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProductPage from "./Products/ProductPage";
+import LandingPage from "./LandingPage/LandingPage";
 
 function App() {
   const [productData, SetProductData] = useState([]);
@@ -10,11 +11,11 @@ function App() {
   const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
   useEffect(()=>{
     fetchData()
-   },[])
+   },[]);
 
-   useEffect(()=> {
-    console.log(category);
-  },[category])
+  //  useEffect(()=>{
+  //   console.log(category);
+  //  },[category])
 
    async function fetchData() {
     try{
@@ -30,26 +31,30 @@ function App() {
       }
 
       const responseData = await response.json();
-      console.log(responseData);
       SetProductData (responseData);
 
     }catch (error) {
       console.error(error);
       SetProductData ([]);
     }
-  }
+  };
 
-  const handleClick = (e) => {
+  const handleQuery = (e) => {
     setCategory(e.target.value)
   }
 
-  
 
   return (
     <>
+    <BrowserRouter>
       <Nav />
-      <Sidebar handleClick={handleClick}/> 
-      <Products productData={productData}/>
+    <Routes >
+    <Route path="/"  element={<LandingPage/>}/>
+      <Route path="/products" element={<ProductPage productData={productData} handleQuery={handleQuery} category={category}/>}>
+      </Route>
+    </Routes>
+      
+    </BrowserRouter>
     </>
   );
 }
