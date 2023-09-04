@@ -1,6 +1,7 @@
 import {FaBagShopping} from "react-icons/fa6";
 
-function Card({category,img,name,description,price}) {
+function Card({category,img,name,description,price,handleCart}) {
+  const item = {category,img,name,description,price}
   return (
     <section className="card">
           <div className="card-img-container">
@@ -18,9 +19,9 @@ function Card({category,img,name,description,price}) {
             <div className="price">
                 {price}
               </div>
-              <div className="bag">
+              <button className="bag" onClick={()=>handleCart(item)}>
                 <FaBagShopping className="bag-icon" />
-              </div>
+              </button>
             </section>
 
           </div>

@@ -1,7 +1,7 @@
 import Card from "../components/Card";
 import "./Products.css"
 
-function Products({productData , category}) {
+function Products({productData , category, handleCart}) {
   console.log(productData);
   return (
     <>
@@ -18,6 +18,7 @@ function Products({productData , category}) {
           description={product.description}
           category={product.category.name}
           price={product.price}
+          handleCart={handleCart}
           />
         ))}
       </section>

@@ -53,6 +53,16 @@
 
 }
 
+.card-footer .bag{
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.card-footer .bag .bag-icon:hover {
+  color: red;
+}
+
 .card-footer .bag .bag-icon{
   width: 1.2rem;
   height: 1.2rem;

@@ -1,0 +1,22 @@
+.cart-container {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #e9e1e1a0;
+    z-index: 99999;
+    display: none;
+}
+
+.cart {
+    width: 30%;
+    height: 70%;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
