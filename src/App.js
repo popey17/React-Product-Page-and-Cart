@@ -41,6 +41,7 @@ function App() {
   };
 
 
+
    async function fetchCategoryData() {
     try{
       const response = await fetch ('http://items.aura.biocaremm.com/api/categories', {
@@ -69,7 +70,7 @@ function App() {
   }
 
   const handleCart = (item) => {
-    console.log(item)
+    setCart([...cart,item])
   }
 
   const handleCartClick = () => {
@@ -79,8 +80,8 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      { isShowNav && <Cart  handleCartClick={handleCartClick}/> }
-      <Nav handleCartClick={handleCartClick}/>
+      { isShowNav && <Cart  handleCartClick={handleCartClick} cart={cart}/> }
+      <Nav handleCartClick={handleCartClick} cart={cart}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
       <Route path="/products" element={<ProductPage productData={productData} handleQuery={handleQuery} category={category} handleCart={handleCart} categoryData={categoryData}/>}>

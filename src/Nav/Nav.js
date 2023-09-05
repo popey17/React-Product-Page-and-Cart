@@ -3,7 +3,7 @@ import {AiOutlineShoppingCart} from "react-icons/ai";
 import {BiPackage} from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-function Nav({handleCartClick}) {
+function Nav({handleCartClick, cart}) {
   return (
     <nav>
         <div className="logo">
@@ -13,7 +13,7 @@ function Nav({handleCartClick}) {
             <Link to='/products'><BiPackage className="nav-icons" />Products</Link>
             <a href="#" onClick={handleCartClick}>
               <AiOutlineShoppingCart className="nav-icons"/>
-              <span className="count">1</span>
+              <span className="count">{cart.length}</span>
             </a>
             
           </div>

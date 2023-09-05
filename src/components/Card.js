@@ -1,7 +1,7 @@
 import {FaBagShopping} from "react-icons/fa6";
 
-function Card({category,img,name,description,price,handleCart}) {
-  const item = {category,img,name,description,price}
+function Card({category,img,name,description,price,handleCart,id,amount}) {
+  const item = {category,img,name,price,id,amount}
   return (
     <section className="card">
           <div className="card-img-container">
