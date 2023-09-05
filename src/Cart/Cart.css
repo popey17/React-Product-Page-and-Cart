@@ -6,7 +6,7 @@
     height: 100vh;
     background: #e9e1e1a0;
     z-index: 99999;
-    display: none;
+    /* display: none; */
 }
 
 .cart {

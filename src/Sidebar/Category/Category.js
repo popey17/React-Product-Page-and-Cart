@@ -2,36 +2,11 @@ import Input from '../../components/Input'
 import { useState, useEffect } from "react";
 import './Category.css'
 
-function Category({handleQuery}) {
-  const [categoryData, setCategoryData] = useState([]);
+function Category({handleQuery,categoryData}) {
+
   const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
 
-  useEffect(()=>{
-    fetchData()
-   },[])
 
-   async function fetchData() {
-    try{
-      const response = await fetch ('http://items.aura.biocaremm.com/api/categories', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${Token}`,
-        },
-      });
-  
-
-      if(!response) {
-        throw new Error('error fetching data');
-      }
-
-      const responseData = await response.json();
-      setCategoryData (responseData);
-
-    }catch (error) {
-      console.error(error);
-      setCategoryData ([]);
-    }
-  }
 
   return (
     <>

@@ -9,13 +9,16 @@ function App() {
   const [productData, SetProductData] = useState([]);
   const [category,setCategory] = useState('');
   const [cart,setCart] = useState([]);
+  const [isShowNav, setIsShowNav] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
 
   const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
   useEffect(()=>{
-    fetchData()
+    fetchProductData()
+    fetchCategoryData()
    },[]);
 
-   async function fetchData() {
+   async function fetchProductData() {
     try{
       const response = await fetch ('http://items.aura.biocaremm.com/api/products', {
         method: 'GET',
@@ -37,6 +40,30 @@ function App() {
     }
   };
 
+
+   async function fetchCategoryData() {
+    try{
+      const response = await fetch ('http://items.aura.biocaremm.com/api/categories', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${Token}`,
+        },
+      });
+  
+
+      if(!response) {
+        throw new Error('error fetching data');
+      }
+
+      const responseData = await response.json();
+      setCategoryData (responseData);
+
+    }catch (error) {
+      console.error(error);
+      setCategoryData ([]);
+    }
+  }
+
   const handleQuery = (e) => {
     setCategory(e.target.value)
   }
@@ -45,14 +72,18 @@ function App() {
     console.log(item)
   }
 
+  const handleCartClick = () => {
+    setIsShowNav(!isShowNav);
+  }
+
   return (
     <>
     <BrowserRouter>
-      <Cart />
-      <Nav />
+      { isShowNav && <Cart  handleCartClick={handleCartClick}/> }
+      <Nav handleCartClick={handleCartClick}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
-      <Route path="/products" element={<ProductPage productData={productData} handleQuery={handleQuery} category={category} handleCart={handleCart}/>}>
+      <Route path="/products" element={<ProductPage productData={productData} handleQuery={handleQuery} category={category} handleCart={handleCart} categoryData={categoryData}/>}>
       </Route>
     </Routes>
       

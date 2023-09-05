@@ -1,8 +1,15 @@
 import "./Cart.css"
 
-function Cart() {
+function Cart({handleCartClick}) {
+  const cartClickHandler = (e) =>{
+    if( e.target === e.currentTarget ){
+      handleCartClick();
+    }
+    
+  }
+
   return (
-    <div className="cart-container">
+    <div className="cart-container" onClick={cartClickHandler}>
       <div className="cart">
 
       </div>
