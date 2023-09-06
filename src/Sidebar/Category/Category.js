@@ -15,7 +15,6 @@ function Category({handleQuery,categoryData}) {
         <Input title='All' name='category' value='' handleQuery={handleQuery} />
         {categoryData.map(category=>(
           <Input key={category.id} title={category.name} name="category" value={category.name} handleQuery={handleQuery}/>
-          // <Input type="radio" key={category.id} name={category.name} title={category.name} value={category.name}/>
         ))}
       </div>
     </>
