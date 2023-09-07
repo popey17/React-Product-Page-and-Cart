@@ -4,7 +4,7 @@ import "./Products.css"
 function Products({productData , category, handleCart}) {
   // console.log(productData);
   return (
-    <>
+    <div className="product-container-wrapper">
       <section className="card-container">
         {productData.filter((product)=>{
           const categoryCondition = category === '' ? product : product.category.name ===  category;
@@ -24,7 +24,7 @@ function Products({productData , category, handleCart}) {
           />
         ))}
       </section>
-    </>
+    </div>
   )
 }
 

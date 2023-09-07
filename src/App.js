@@ -21,10 +21,11 @@ function App() {
 
    async function fetchProductData() {
     try{
-      const response = await fetch ('http://items.aura.biocaremm.com/api/products', {
+      const response = await fetch ('https://items.aura.biocaremm.com/api/products', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${Token}`,
+          'Access-Control-Allow-Origin': '*',
         },
       });
 
@@ -45,7 +46,7 @@ function App() {
 
    async function fetchCategoryData() {
     try{
-      const response = await fetch ('http://items.aura.biocaremm.com/api/categories', {
+      const response = await fetch ('https://items.aura.biocaremm.com/api/categories', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${Token}`,
@@ -127,6 +128,7 @@ function App() {
     const upatedCart = cart.filter((item)=>item.id !== itemId);
     setCart(upatedCart);
   }
+
 
 
   return (
