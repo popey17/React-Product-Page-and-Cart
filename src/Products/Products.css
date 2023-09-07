@@ -40,9 +40,6 @@ product-container-wrapper {
   margin-bottom: 1rem;
 }
 
-.card-title {
-}
-
 .card-category {
   font-size: 0.8rem;
 }
@@ -83,9 +80,21 @@ product-container-wrapper {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
+
+@media screen and (max-width: 1100px) {
+  .card-container{
+    margin-left: 12rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .card-container{
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 760px) {
   .card-container{
     margin-left: 0;
-    justify-content: center;
   }
 }

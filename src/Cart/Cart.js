@@ -1,5 +1,7 @@
 import "./Cart.css"
 import html2canvas from "html2canvas";
+import {AiOutlinePlusCircle, AiOutlineMinusCircle,AiOutlineClose} from "react-icons/ai"
+import {MdRemoveShoppingCart} from 'react-icons/md'
 
 // const takeScreenShot = ()=> {
 //   const element = document.getElementById('areaToTakeSS');
@@ -22,8 +24,7 @@ import html2canvas from "html2canvas";
 const takeScreenShot = () => {
     html2canvas(document.querySelector('#areaToTakeSS'),{ 
     useCORS: true,
-    'Access-Control-Allow-Origin': '*',
-    backgroundColor: "red" })
+    allowTaint:true, })
     .then((canvas)=>{
     let img = canvas.toDataURL('image/jpeg',0.9);
     console.log(img);
@@ -54,12 +55,16 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
   return (
     <div className="cart-container" onClick={cartClickHandler}>
       <div className="cart" id="areaToTakeSS">
+        <div className="close-Btn" >
+          <AiOutlineClose onClick={handleCartClick} />
+        </div>
         <div className="cartcontainer">
         <div className="cart-header">
           <h2 className="cart-title">Shopping Cart</h2>
           <button className="clear-btn" onClick={clearCart}>remove all</button>
         </div>
         <div className="cart-item-container">
+          
           <div className="cart-items" >
           {cart.map(item=>(
             <div className="cart-item" key={item.id}>
@@ -70,14 +75,14 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                   <p >{item.name}</p>
                 </div>
                 <div className="amount-container">
-                  <button onClick={()=>increaseQuantity(item.id)}> + </button>
+                    <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)}/>
                   <p>{item.amount}</p>
-                  <button onClick={()=>decreaseQuantity(item.id)}> - </button>
+                    <AiOutlineMinusCircle onClick={()=>decreaseQuantity(item.id)}/>
                 </div>
                 <div className="price">
                   {(item.price).toLocaleString("en-US")}
                 </div>
-                <button className="removeBtn" onClick={()=>handleRemove(item.id)}>remove</button>
+                <button className="removeBtn" onClick={()=>handleRemove(item.id)}><span>remove</span><MdRemoveShoppingCart/></button>
             </div>
           ))}
           </div>
@@ -88,10 +93,11 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
             <p className="total-price">{totalPrice.toLocaleString("en-US")}</p>
           </div>
         </div>
+
         <div className="screenshot-btn-container">
           <button className="screenshot-btn" onClick={takeScreenShot}>Save</button>
         </div>
-        
+        </div>
       </div>
     </div>
   )
