@@ -1,11 +1,27 @@
 .sidebar {
-  width: 15%;
+  width: 15rem;
   position: fixed;
   height: 100%;
   border-right: 2px solid #e5e5e5;
   z-index: 3;
-  padding-top: 2rem;
+  padding-top: 3rem;
+  background: #fff;
 }
+
+.sidebar-toggle{
+  display: none;
+  z-index: 4;
+  position: absolute;
+  left: 0;
+  top: 4rem;
+  
+}
+
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+}
+
 
 input {
   padding: 12px 20px;
@@ -18,4 +34,23 @@ input {
 .sidebar-container {
   width: 50%;
   margin: auto;
+}
+
+@media screen and (max-width: 760px) {
+  .sidebar{
+    display: none;
+  }
+  .sidebar.show {
+    display: block;
+    transition: all 0.3s ease;
+
+  }
+  .sidebar-toggle{
+    display: block;
+    transition: all 0.3s ease;
+
+  }
+  .sidebar-toggle.show {
+    /* left: 12rem; */
+  }
 }
