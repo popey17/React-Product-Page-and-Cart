@@ -1,6 +1,6 @@
 import "./Cart.css"
 
-function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity}) {
+function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity, handleRemove}) {
 
   const cartClickHandler = (e) =>{
     console.log(cart);
@@ -43,15 +43,19 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                 <div className="price">
                   {(item.price).toLocaleString("en-US")}
                 </div>
+                <button className="removeBtn" onClick={()=>handleRemove(item.id)}>remove</button>
             </div>
           ))}
           </div>
         </div>
         <div className="cart-footer">
           <div className="footer-content">
-            <p>total price</p>
+            <p>Total Price</p>
             <p className="total-price">{totalPrice.toLocaleString("en-US")}</p>
           </div>
+        </div>
+        <div className="checkout-btn-container">
+          <button className="checkout-btn">Check Out</button>
         </div>
         
       </div>

@@ -86,10 +86,18 @@
     justify-content: flex-end;
 }
 
+.cart-item .removeBtn {
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+
+}
+
 .cart-footer {
     display: flex;
     justify-content: flex-end;
     border-top: 1px solid #000;
+    margin-bottom: 20px;
 }
 
 .cart-footer .footer-content {
@@ -102,4 +110,15 @@
     min-width: 100px;
     display: flex;
     justify-content: flex-end;
+}
+
+.checkout-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-btn-container .checkout-btn {
+    padding: 5px;
+    border-radius: 5px;
 }
