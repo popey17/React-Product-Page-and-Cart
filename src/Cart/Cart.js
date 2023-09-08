@@ -56,8 +56,8 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
   const totalPrice= calculateTotalPrice();
 
   return (
-    <div className="cart-container" onClick={cartClickHandler}>
-      <div className="cart" id="areaToTakeSS">
+    <div className="cart-container" onClick={cartClickHandler}id="areaToTakeSS">
+      <div className="cart" >
         <div className="close-Btn" >
           <AiOutlineClose onClick={handleCartClick} />
         </div>
