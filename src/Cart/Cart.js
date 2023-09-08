@@ -7,18 +7,27 @@ import {MdRemoveShoppingCart} from 'react-icons/md'
 
 
 const takeScreenShot = () => {
-    html2canvas(document.querySelector('#areaToTakeSS'),{ 
+  html2canvas(document.querySelector('#areaToTakeSS'), {
     useCORS: true,
-    allowTaint:true, })
-    .then((canvas)=>{
-    let img = canvas.toDataURL('image/jpeg',0.9);
-    console.log(img);
-    const a = document.createElement('a');
-    a.href = img;
-    a.download = 'caputure.jpeg'
-    a.click();
+    allowTaint: true,
+    logging: true,
+    onclone: (cloneDoc) => {
+      // Modify elements inside the cloned iframe if needed
+      const elementsToIgnore = cloneDoc.querySelectorAll('#ignore');
+      elementsToIgnore.forEach((element) => {
+        element.style.display = 'none'; // Hide elements not needed in the screenshot
+      });
+    },
+  })
+    .then((canvas) => {
+      let img = canvas.toDataURL('image/jpeg', 0.9);
+      console.log(img);
+      const a = document.createElement('a');
+      a.href = img;
+      a.download = 'capture.jpeg';
+      a.click();
     });
-}
+};
 
 // var node = document.getElementById('areaToTakeSS');
 
@@ -41,7 +50,7 @@ const takeScreenShot = () => {
 function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity, handleRemove}) {
 
   const cartClickHandler = (e) =>{
-    console.log(cart);
+    // console.log(cart);
     if( e.target === e.currentTarget ){
       handleCartClick();
     } 
@@ -56,15 +65,15 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
   const totalPrice= calculateTotalPrice();
 
   return (
-    <div className="cart-container" onClick={cartClickHandler}id="areaToTakeSS">
-      <div className="cart" >
-        <div className="close-Btn" >
+    <div className="cart-container" onClick={cartClickHandler}>
+      <div className="cart"  id="areaToTakeSS">
+        <div className="close-Btn" id="ignore" >
           <AiOutlineClose onClick={handleCartClick} />
         </div>
         <div className="cartcontainer">
         <div className="cart-header">
           <h2 className="cart-title">Shopping Cart</h2>
-          <button className="clear-btn" onClick={clearCart}>remove all</button>
+          <button id="ignore" className="clear-btn" onClick={clearCart}>remove all</button>
         </div>
         <div className="cart-item-container">
           
@@ -78,14 +87,14 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                   <p >{item.name}</p>
                 </div>
                 <div className="amount-container">
-                    <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)}/>
+                    <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)} id="ignore"/>
                   <p>{item.amount}</p>
-                    <AiOutlineMinusCircle onClick={()=>decreaseQuantity(item.id)}/>
+                    <AiOutlineMinusCircle onClick={()=>decreaseQuantity(item.id)} id="ignore"/>
                 </div>
                 <div className="price">
                   {(item.price).toLocaleString("en-US")}
                 </div>
-                <button className="removeBtn" onClick={()=>handleRemove(item.id)}><span>remove</span><MdRemoveShoppingCart/></button>
+                <button id="ignore" className="removeBtn" onClick={()=>handleRemove(item.id)}><span>remove</span><MdRemoveShoppingCart/></button>
             </div>
           ))}
           </div>
@@ -97,7 +106,7 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
           </div>
         </div>
 
-        <div className="screenshot-btn-container">
+        <div className="screenshot-btn-container" id="ignore">
           <button className="screenshot-btn" onClick={takeScreenShot}>Save</button>
         </div>
         </div>
