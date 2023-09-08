@@ -1,11 +1,7 @@
 import Input from '../../components/Input'
-import { useState, useEffect } from "react";
 import './Category.css'
 
 function Category({handleQuery,categoryData}) {
-
-  const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
-
 
 
   return (

@@ -23,9 +23,11 @@ function App() {
     try{
       const response = await fetch ('https://items.aura.biocaremm.com/api/products', {
         method: 'GET',
+        mode:'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
           'Authorization': `Bearer ${Token}`,
-          'Access-Control-Allow-Origin': '*',
         },
       });
 
@@ -124,17 +126,12 @@ function App() {
     setCart(updatedCart);
   };
 
-  const handleRemove=(itemId) => {
-    const upatedCart = cart.filter((item)=>item.id !== itemId);
-    setCart(upatedCart);
-  }
-
 
 
   return (
     <>
     <BrowserRouter>
-      { isShowNav && <Cart  handleCartClick={handleCartClick} cart={cart} clearCart={clearCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} handleRemove={handleRemove}/> }
+      { isShowNav && <Cart  handleCartClick={handleCartClick} cart={cart} clearCart={clearCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/> }
       <Nav handleCartClick={handleCartClick} cart={cart}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
