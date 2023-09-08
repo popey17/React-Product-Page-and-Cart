@@ -34,8 +34,14 @@ nav {
   margin-left: 2rem;
 }
 
-.navlinks a .count {
-  background-color: aqua;
+.navlinks button {
+  border: none;
+  background: transparent;
+  position: relative;
+}
+
+.navlinks button .count {
+  background-color: rgb(68, 70, 70);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -46,6 +52,7 @@ nav {
   position: absolute;
   right: -6px;
   top:-3px;
+  color: white;
 }
 
 @media screen and (max-width: 760px) {

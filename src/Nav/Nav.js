@@ -11,10 +11,10 @@ function Nav({handleCartClick, cart}) {
         </div>
           <div className="navlinks">
             <Link to='/products'><BiPackage className="nav-icons" />Products</Link>
-            <a  onClick={handleCartClick}>
+            <button  onClick={handleCartClick}>
               <AiOutlineShoppingCart className="nav-icons"/>
               <span className="count">{cart.length}</span>
-            </a>
+            </button>
             
           </div>
       

@@ -100,6 +100,13 @@ function App() {
     setCart([]);
   }
 
+  const handleRemove = (itemId) => {
+    const updatedCart = cart.filter((item)=>{
+      return item.id !== itemId;
+    })
+    setCart(updatedCart);
+  }
+
   const increaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) => {
       if (item.id === itemId) {
@@ -131,7 +138,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      { isShowNav && <Cart  handleCartClick={handleCartClick} cart={cart} clearCart={clearCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/> }
+      { isShowNav && <Cart handleRemove={handleRemove} handleCartClick={handleCartClick} cart={cart} clearCart={clearCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/> }
       <Nav handleCartClick={handleCartClick} cart={cart}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
