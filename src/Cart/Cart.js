@@ -2,38 +2,38 @@ import "./Cart.css"
 import html2canvas from "html2canvas";
 import {AiOutlinePlusCircle, AiOutlineMinusCircle,AiOutlineClose} from "react-icons/ai"
 import {MdRemoveShoppingCart} from 'react-icons/md'
-import * as htmlToImage from 'html-to-image';
-import download from "downloadjs";
+// import * as htmlToImage from 'html-to-image';
+// import download from "downloadjs";
 
-
-// const takeScreenShot = () => {
-//     html2canvas(document.querySelector('#areaToTakeSS'),{ 
-//     useCORS: true,
-//     allowTaint:true, })
-//     .then((canvas)=>{
-//     let img = canvas.toDataURL('image/jpeg',0.9);
-//     console.log(img);
-//     const a = document.createElement('a');
-//     a.href = img;
-//     a.download = 'caputure.jpeg'
-//     a.click();
-//     });
-// }
-
-var node = document.getElementById('areaToTakeSS');
 
 const takeScreenShot = () => {
-  console.log(document.querySelector('#areaToTakeSS').innerHTML);
-  htmlToImage.toPng(document.querySelector('#areaToTakeSS'))
-  .then(function (dataUrl) {
-    var img = new Image();
-    console.log(dataUrl);
-    download(dataUrl, 'my-node.png');
-  })
-  .catch(function (error) {
-    console.error('oops, something went wrong!', error);
-  });
+    html2canvas(document.querySelector('#areaToTakeSS'),{ 
+    useCORS: true,
+    allowTaint:true, })
+    .then((canvas)=>{
+    let img = canvas.toDataURL('image/jpeg',0.9);
+    console.log(img);
+    const a = document.createElement('a');
+    a.href = img;
+    a.download = 'caputure.jpeg'
+    a.click();
+    });
 }
+
+// var node = document.getElementById('areaToTakeSS');
+
+// const takeScreenShot = () => {
+//   console.log(document.querySelector('#areaToTakeSS').innerHTML);
+//   htmlToImage.toPng(document.querySelector('#areaToTakeSS'))
+//   .then(function (dataUrl) {
+//     var img = new Image();
+//     console.log(dataUrl);
+//     download(dataUrl, 'my-node.png');
+//   })
+//   .catch(function (error) {
+//     console.error('oops, something went wrong!', error);
+//   });
+// }
 
 
 
@@ -56,8 +56,8 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
   const totalPrice= calculateTotalPrice();
 
   return (
-    <div className="cart-container" onClick={cartClickHandler}id="areaToTakeSS">
-      <div className="cart" >
+    <div className="cart-container" onClick={cartClickHandler}>
+      <div className="cart" id="areaToTakeSS">
         <div className="close-Btn" >
           <AiOutlineClose onClick={handleCartClick} />
         </div>
