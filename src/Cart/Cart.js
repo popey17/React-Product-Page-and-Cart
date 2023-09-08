@@ -1,26 +1,26 @@
 import "./Cart.css"
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 import {AiOutlinePlusCircle, AiOutlineMinusCircle,AiOutlineClose} from "react-icons/ai"
 import {MdRemoveShoppingCart} from 'react-icons/md'
+import React, { useCallback, useRef } from 'react';
+import { toPng } from 'html-to-image';
 // import * as htmlToImage from 'html-to-image';
 // import download from "downloadjs";
 
 
-const takeScreenShot = () => {
-    html2canvas(document.querySelector('#areaToTakeSS'),{ 
-    useCORS: true,
-    allowTaint:true, })
-    .then((canvas)=>{
-    let img = canvas.toDataURL('image/jpeg',0.9);
-    console.log(img);
-    const a = document.createElement('a');
-    a.href = img;
-    a.download = 'caputure.jpeg'
-    a.click();
-    });
-}
-
-// var node = document.getElementById('areaToTakeSS');
+// const takeScreenShot = () => {
+//     html2canvas(document.querySelector('#areaToTakeSS'),{ 
+//     useCORS: true,
+//     allowTaint:true, })
+//     .then((canvas)=>{
+//     let img = canvas.toDataURL('image/jpeg',0.9);
+//     console.log(img);
+//     const a = document.createElement('a');
+//     a.href = img;
+//     a.download = 'caputure.jpeg'
+//     a.click();
+//     });
+// }
 
 // const takeScreenShot = () => {
 //   console.log(document.querySelector('#areaToTakeSS').innerHTML);
@@ -39,6 +39,24 @@ const takeScreenShot = () => {
 
 
 function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity, handleRemove}) {
+  const ref = useRef(null);
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return
+    }
+
+    toPng(ref.current, { cacheBust: true, backgroundColor: '#fff',width:2000,height:2000})
+      .then((dataUrl) => {
+        const link = document.createElement('a')
+        link.download = 'my-image-name.png'
+        link.href = dataUrl
+        link.click()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [ref])
 
   const cartClickHandler = (e) =>{
     console.log(cart);
@@ -56,8 +74,8 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
   const totalPrice= calculateTotalPrice();
 
   return (
-    <div className="cart-container" onClick={cartClickHandler}>
-      <div className="cart" id="areaToTakeSS">
+    <div className="cart-container" onClick={cartClickHandler}  ref={ref}>
+      <div className="cart" id="areaToTakeSS" >
         <div className="close-Btn" >
           <AiOutlineClose onClick={handleCartClick} />
         </div>
@@ -98,7 +116,7 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
         </div>
 
         <div className="screenshot-btn-container">
-          <button className="screenshot-btn" onClick={takeScreenShot}>Save</button>
+          <button className="screenshot-btn" onClick={onButtonClick}>Save</button>
         </div>
         </div>
       </div>
