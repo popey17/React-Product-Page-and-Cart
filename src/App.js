@@ -107,13 +107,29 @@ function App() {
     setCart(updatedCart);
   }
 
+
   const increaseQuantity = (itemId) => {
+    
     const updatedCart = cart.map((item) => {
+      function calculatePrice(quantity,normalPrice,discountPrice) {
+        if(item.moq === null){
+          discountPrice = normalPrice
+        }
+
+        if (quantity <= 0) {
+          return 0; // Handle invalid input
+        } else if (quantity < item.moq) {
+          return normalPrice * quantity;
+        } else {
+          
+          return discountPrice * quantity;
+        }
+      }
+      
       if (item.id === itemId) {
-        const singlePrice = item.price/item.amount;
         const updatedAmount = item.amount + 1;
-        const updatedPrice = item.price + singlePrice;
-        return { ...item, amount: updatedAmount,price: updatedPrice };
+        const updatedPrice = calculatePrice(updatedAmount,item.price, item.moqPrice)
+        return { ...item, amount: updatedAmount,total: updatedPrice };
       }
       return item;
     });
@@ -121,12 +137,25 @@ function App() {
   };
 
   const decreaseQuantity = (itemId) => {
+    
     const updatedCart = cart.map((item) => {
+      function calculatePrice(quantity,normalPrice,discountPrice) {
+        if(item.moq === null){
+          discountPrice = normalPrice
+        }
+        if (quantity <= 0) {
+          return 0; // Handle invalid input
+        } else if (quantity < item.moq) {
+          return normalPrice * quantity;
+        } else {
+          return discountPrice * quantity;
+        }
+      }
+      
       if (item.id === itemId && item.amount > 1) {
-        const singlePrice = item.price/item.amount;
         const updatedAmount = item.amount - 1;
-        const updatedPrice = item.price - singlePrice;
-        return { ...item, amount: updatedAmount, price: updatedPrice };
+        const updatedPrice = calculatePrice(updatedAmount,item.price, item.moqPrice)
+        return { ...item, amount: updatedAmount,total: updatedPrice };
       }
       return item;
     });

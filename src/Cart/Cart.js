@@ -2,8 +2,6 @@ import "./Cart.css"
 import html2canvas from "html2canvas";
 import {AiOutlinePlusCircle, AiOutlineMinusCircle,AiOutlineClose} from "react-icons/ai"
 import {MdRemoveShoppingCart} from 'react-icons/md'
-// import * as htmlToImage from 'html-to-image';
-// import download from "downloadjs";
 
 
 const takeScreenShot = () => {
@@ -29,20 +27,6 @@ const takeScreenShot = () => {
     });
 };
 
-// var node = document.getElementById('areaToTakeSS');
-
-// const takeScreenShot = () => {
-//   console.log(document.querySelector('#areaToTakeSS').innerHTML);
-//   htmlToImage.toPng(document.querySelector('#areaToTakeSS'))
-//   .then(function (dataUrl) {
-//     var img = new Image();
-//     console.log(dataUrl);
-//     download(dataUrl, 'my-node.png');
-//   })
-//   .catch(function (error) {
-//     console.error('oops, something went wrong!', error);
-//   });
-// }
 
 
 
@@ -50,7 +34,7 @@ const takeScreenShot = () => {
 function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity, handleRemove}) {
 
   const cartClickHandler = (e) =>{
-    // console.log(cart);
+    console.log(cart);
     if( e.target === e.currentTarget ){
       handleCartClick();
     } 
@@ -58,7 +42,7 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
 
   const calculateTotalPrice = () => {
     return cart.reduce(
-      (total, item) => total + item.price,
+      (total, item) => total + item.total,
       0
     );
   };
@@ -85,6 +69,7 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                 </div>
                 <div className="name">
                   <p >{item.name}</p>
+                  <p>Price: {(item.amount < item.moq|| item.moq === null)? (item.price):(item.moqPrice)}</p>
                 </div>
                 <div className="amount-container">
                     <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)} id="ignore"/>
@@ -92,7 +77,7 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                     <AiOutlineMinusCircle onClick={()=>decreaseQuantity(item.id)} id="ignore"/>
                 </div>
                 <div className="price">
-                  {(item.price).toLocaleString("en-US")}
+                {(item.total=== null)?(item.price).toLocaleString("en-US"):(item.total).toLocaleString("en-US")}
                 </div>
                 <button id="ignore" className="removeBtn" onClick={()=>handleRemove(item.id)}><span>remove</span><MdRemoveShoppingCart/></button>
             </div>

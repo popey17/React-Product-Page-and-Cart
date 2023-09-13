@@ -1,7 +1,8 @@
 import {FaBagShopping} from "react-icons/fa6";
 
-function Card({category,img,name,description,price,handleCart,id,amount}) {
-  const item = {category,img,name,price,id,amount}
+function Card({category,img,name,description,price,handleCart,id,amount,moq,moqPrice,total}) {
+  const item = {category,img,name,price,id,amount,moq,moqPrice,total}
+  // console.log(moq);
   return (
     <section className="card">
           <div className="card-img-container">
@@ -13,11 +14,16 @@ function Card({category,img,name,description,price,handleCart,id,amount}) {
               <p className="card-category">{category}</p>
             </div>
             <section className="card-body">
-              <p>{description}</p>
+              <p className="card-description">{description}</p>
             </section>
             <section className="card-footer">
-            <div className="price">
-                {price}
+              <div className="price">
+                <div className="normalPrice">
+                  Price: <span className="text-blue">{price}</span>
+                </div>
+                <div className="moqPrice text-blue">
+                  {(moq > 0) ? <div>{moq}<span className="text-normal"> pieces price:</span>  {moqPrice}</div>:''}
+                </div>
               </div>
               <button className="bag" onClick={()=>handleCart(item)}>
                 <FaBagShopping className="bag-icon" />

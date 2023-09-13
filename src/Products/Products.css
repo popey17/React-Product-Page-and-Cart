@@ -48,6 +48,10 @@ product-container-wrapper {
   margin-bottom: 1rem;
 }
 
+.card-description {
+  min-height: 44px;
+}
+
 .card-footer {
   display: flex;
   justify-content: space-between;
