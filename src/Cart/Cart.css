@@ -64,6 +64,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    justify-content: space-between;
   }
 
   .cart-item .img-container {
@@ -101,7 +102,7 @@
 
 .cart-item .price {
     display: flex;
-    min-width: 50px;
+    min-width: 60px;
     justify-content: flex-end;
 }
 
@@ -157,6 +158,14 @@
 .screenshot-btn-container .screenshot-btn {
     padding: 6px 18px;
     border-radius: 5px;
+}
+
+.text-blue{
+    color: #1b5ace;
+}
+
+.text-normal{
+    color: #000000;
 }
 
 @media screen and (max-width: 800px) {

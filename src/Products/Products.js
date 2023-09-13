@@ -21,6 +21,9 @@ function Products({productData , category, handleCart}) {
           price={product.price}
           handleCart={handleCart}
           amount = {product.amount}
+          moq={product.moq_amount}
+          moqPrice={product.moq_price}
+          total= {product.total}
           />
         ))}
       </section>

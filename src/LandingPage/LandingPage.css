@@ -1,0 +1,21 @@
+.landingPageContainer{
+    margin-top: 14rem;
+    text-align: center;
+}
+
+.landingPageContainer h1 {
+    margin-bottom: 4rem;
+}
+
+.landingPageContainer .exploreBtn {
+    padding: 1rem 2rem;
+    background: #969191;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.landingPageContainer .exploreBtn:hover{
+    background: #d4cece;
+    color: #7a7474;
+}
