@@ -72,9 +72,9 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
                   <p>Price: {(item.amount < item.moq|| item.moq === null)? (item.price):(item.moqPrice)}</p>
                 </div>
                 <div className="amount-container">
-                    <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)} id="ignore"/>
-                  <p>{item.amount}</p>
                     <AiOutlineMinusCircle onClick={()=>decreaseQuantity(item.id)} id="ignore"/>
+                  <p>{item.amount}</p>
+                    <AiOutlinePlusCircle onClick={()=>increaseQuantity(item.id)} id="ignore"/>
                 </div>
                 <div className="price">
                 {(item.total=== null)?(item.price).toLocaleString("en-US"):(item.total).toLocaleString("en-US")}
