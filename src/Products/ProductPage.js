@@ -1,17 +1,12 @@
 import Products from "./Products";
-import { useEffect } from "react";
 import Sidebar from '../Sidebar/Sidebar'
 
-function ProductPage({isError,handleQuery,productData,category,handleCart,categoryData,loading}) {
-  useEffect(()=>{
-    console.log(isError);
-  },[isError])
+function ProductPage({handleQuery,category,handleCategoryQuery,query,handleCart,categoryData}) {
   
   return (
     <>
-      <Sidebar handleQuery={handleQuery} categoryData={categoryData}/> 
-      <Products productData={productData} category={category} handleCart={handleCart} loading={loading}/>
-      { isError && <div className="warning">This item has already added to the cart.</div>}
+      <Sidebar handleQuery={handleQuery} categoryData={categoryData} handleCategoryQuery={handleCategoryQuery}/> 
+      <Products  query={query} handleCart={handleCart} category={category}/>
     </>
   )
 }
