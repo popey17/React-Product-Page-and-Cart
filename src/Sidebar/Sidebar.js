@@ -4,7 +4,7 @@ import Hamburger from 'hamburger-react'
 import { useState } from 'react';
 
 
-function Sidebar({handleQuery, categoryData}) {
+function Sidebar({handleQuery, categoryData ,handleCategoryQuery}) {
   const [sidebarIsShown , setSidebarIsShown] = useState(false)
 
 
@@ -18,7 +18,7 @@ function Sidebar({handleQuery, categoryData}) {
         <section className={sidebarIsShown?'sidebar show': 'sidebar'}>  
           <div className='sidebar-container'>
             <input type="text" placeholder='Search your item here' onChange={handleQuery} />
-            <Category categoryData={categoryData}  handleQuery={handleQuery}/>
+            <Category categoryData={categoryData}  handleQuery={handleCategoryQuery}/>
           </div>
         </section>
       </>

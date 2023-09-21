@@ -6,74 +6,20 @@ import LandingPage from "./LandingPage/LandingPage";
 import Cart from "./Cart/Cart";
 
 function App() {
-  const [productData, SetProductData] = useState([]);
   const [category,setCategory] = useState('');
   const [cart,setCart] = useState([]);
   const [isShowNav, setIsShowNav] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
-  const [isError , setIsError] = useState(false)
-  const [page , setPage] = useState(1);
-  const [loading , setLoading] = useState(true);
-  const [ending , setEnding] = useState(false);
+  const [query, setQuery] = useState('');
 
   const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
 
   useEffect(()=>{
     fetchCategoryData()
-   },[]);
-  
-   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://items.aura.biocaremm.com/api/products?page=${page}&limit=12`, {
-          method: 'GET',
-          mode: 'cors',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Authorization': `Bearer ${Token}`,
-          },
-        });
-        if (!response) {
-          throw new Error('error fetching data');
-        }
-  
-        const responseData = await response.json();
-        const { data, next_page_url } = responseData;
-        SetProductData(prev => [...prev, ...data]);
-        setLoading(false);
-        if (next_page_url === null) setEnding(true);
-      } catch (error) {
-        console.error(error);
-        SetProductData([]);
-      }
-    };
-  
-    fetchData(); // Call the async function immediately
-  
-    if (!ending) {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, [ending,page]);
-  
-
-  const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-      setLoading(true);
-      setPage((prev) => prev + 1);
-    }
-  };
-
-  useEffect(() => {
-    if (!ending) {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, [ending]);
+  },[]);
 
 
-   async function fetchCategoryData() {
+  async function fetchCategoryData() {
     try{
       const response = await fetch ('https://items.aura.biocaremm.com/api/categories', {
         method: 'GET',
@@ -98,6 +44,10 @@ function App() {
 
 
   const handleQuery = (e) => {
+    setQuery(e.target.value)
+  }
+
+  const handleCategoryQuery= (e) => {
     setCategory(e.target.value)
   }
 
@@ -110,10 +60,10 @@ function App() {
     })
 
     if(isPresnt) {
-      setIsError(true);
-      setTimeout(()=>{
-        setIsError(false);
-      },2000)
+      // // setIsError(true);
+      // setTimeout(()=>{
+      //   setIsError(false);
+      // },2000)
     }else {
       setCart([...cart,item])
     }
@@ -122,6 +72,8 @@ function App() {
   const handleCartClick = () => {
     setIsShowNav(!isShowNav);
   }
+
+  
 
   const clearCart = () => {
     setCart([]);
@@ -198,7 +150,7 @@ function App() {
       <Nav handleCartClick={handleCartClick} cart={cart}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
-      <Route path="/products" element={<ProductPage productData={productData} handleQuery={handleQuery} category={category} handleCart={handleCart} categoryData={categoryData} isError={isError} loading={loading}/>}>
+      <Route path="/products" element={<ProductPage handleCategoryQuery={handleCategoryQuery} category={category} handleQuery={handleQuery} query={query} handleCart={handleCart} categoryData={categoryData}/>}>
       </Route>
     </Routes>
       
