@@ -17,7 +17,7 @@ function Sidebar({handleQuery, categoryData ,handleCategoryQuery}) {
     function handleClickOutside(event) {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         // Clicked outside of the sidebar, so close it
-        toggleSidebar();
+        setSidebarIsShown(!sidebarIsShown);
         setOpen(!isOpen)
       }
     }
@@ -30,7 +30,7 @@ function Sidebar({handleQuery, categoryData ,handleCategoryQuery}) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [sidebarIsShown]);
+  }, [sidebarIsShown, isOpen]);
 
 
   return (
