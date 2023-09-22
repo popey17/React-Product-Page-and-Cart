@@ -18,9 +18,10 @@
     background: #fff;
     padding: 20px;
     position: absolute;
-    margin-top: 30vh;
+    margin-top: 50px;
     left: 50%;
-    transform: translate(-50%,-20%);
+    top: 0;
+    transform: translateX(-50%);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     min-width: 550px;

@@ -1,5 +1,6 @@
 import "./Cart.css"
 import html2canvas from "html2canvas";
+import { useEffect, useState } from "react";
 import {AiOutlinePlusCircle, AiOutlineMinusCircle,AiOutlineClose} from "react-icons/ai"
 import {MdRemoveShoppingCart} from 'react-icons/md'
 
@@ -32,6 +33,7 @@ const takeScreenShot = () => {
 
 
 function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantity, handleRemove}) {
+  const [totalPrice,setTotalPrice] = useState(0);
 
   const cartClickHandler = (e) =>{
     console.log(cart);
@@ -40,13 +42,16 @@ function Cart({handleCartClick, cart, clearCart,increaseQuantity,decreaseQuantit
     } 
   }
 
-  const calculateTotalPrice = () => {
-    return cart.reduce(
+
+  useEffect(()=>{
+    let total = cart.reduce(
       (total, item) => total + item.total,
       0
     );
-  };
-  const totalPrice= calculateTotalPrice();
+    setTotalPrice(total)
+  },[cart])
+
+
 
   return (
     <div className="cart-container" onClick={cartClickHandler}>

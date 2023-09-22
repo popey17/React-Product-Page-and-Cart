@@ -11,6 +11,8 @@ function App() {
   const [isShowNav, setIsShowNav] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
   const [query, setQuery] = useState('');
+  // const [isPresnt, setIsPresent] = useState(false);
+  const [isError, setIsError] = useState(false)
 
   const Token = '1|laravel_sanctum_CoMODX97Cx3HxqDLo08tA9oZDCRcmO9uHFuTCa5v2e12f732';
 
@@ -55,17 +57,15 @@ function App() {
     let isPresnt = false;
     cart.forEach((product)=>{
       if (item.id === product.id)
-      isPresnt = true;
-      // console.log(isPresnt);
+        isPresnt = true;
     })
-
     if(isPresnt) {
-      // // setIsError(true);
-      // setTimeout(()=>{
-      //   setIsError(false);
-      // },2000)
+      setIsError(true);
+      setTimeout(()=>{
+        setIsError(false);
+      },2000)
     }else {
-      setCart([...cart,item])
+      setCart([...cart,{...item,total: item.price}])
     }
   }
 
@@ -150,7 +150,7 @@ function App() {
       <Nav handleCartClick={handleCartClick} cart={cart}/>
     <Routes >
     <Route path="/"  element={<LandingPage/>}/>
-      <Route path="/products" element={<ProductPage handleCategoryQuery={handleCategoryQuery} category={category} handleQuery={handleQuery} query={query} handleCart={handleCart} categoryData={categoryData}/>}>
+      <Route path="/products" element={<ProductPage isError={isError} handleCategoryQuery={handleCategoryQuery} category={category} handleQuery={handleQuery} query={query} handleCart={handleCart} categoryData={categoryData}/>}>
       </Route>
     </Routes>
       
